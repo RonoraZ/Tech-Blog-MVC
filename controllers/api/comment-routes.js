@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { json } = require('body-parser');
-const { join } = require('path/posix');
+// const { json } = require('body-parser');
+// const { join } = require('path/posix');
 const { Comment } = require('../../models/');
 const withAuth = require('../../utils/auth');  
 

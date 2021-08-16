@@ -1,6 +1,6 @@
 //Importing routes and required model files 
 
-const router = require('express').Router 
+const router = require('express').Router();
 
 const{User} = require('../../models')  
 
