@@ -15,7 +15,15 @@ const homeRoutes = require('./home-routes.js');
 const dashboardRoutes = require('./dashboard-routes.js'); 
 
 //Creating the direction of the routes that will be used . 
+const commentRoutes = require('./api/comment-routes');
+const postRoutes = require ('./api/post-routes'); 
+const userRoutes = require('./api/user-routes') 
 
+console.log(userRoutes);
+
+router.use('/comment',commentRoutes); 
+router.use('/post-routes',postRoutes); 
+router.use('/user-routes',userRoutes);
 router.use('/',homeRoutes); 
 router.use('/api',apiRoutes); 
 router.use('/dashboard',dashboardRoutes); 

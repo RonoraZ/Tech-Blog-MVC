@@ -2,7 +2,9 @@
 
 const router = require('express').Router 
 
-const{User} = require('../../models') 
+const{User} = require('../../models')  
+
+const withAuth = require('../../utils/auth');
 
 //Creating a route that will get the data of the user besides his password 
 
@@ -15,7 +17,10 @@ router.get('/',(req,res)=>{
         console.log(err); 
         res.status(500).json(err);
     });
-}); 
+});  
+
+
+
 
 //Creating a route that will get an user info with an id minuse password 
 

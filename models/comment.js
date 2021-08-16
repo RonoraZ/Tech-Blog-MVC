@@ -12,7 +12,7 @@ Comment.init({
     }, 
     commentText:{ 
         type:DataTypes.INTEGER, 
-        Validate:{len:[5]}
+        Validate:{len:[3]}
     
     }, 
     userID:{ 
