@@ -29,11 +29,11 @@ router.get('/:id',(req,res)=>{
         include:[ 
             { 
                 model:Post,  
-                attributes:["id","title","body","user_id"]
+                attributes:["id","title","fufilled","made_in"]
             }, 
             { 
                 model:Comment,  
-                attributes:["id","user_id",'comment_text'], 
+                attributes:['id','commentText','postID','userID','made_in'], 
                 include: { 
                     model:Post, 
                     attributes:['title']
@@ -74,7 +74,7 @@ router.post('/', async (req, res) => {
         req.session.userName = latestUser.username;
         req.session.loggedIn = true;
   
-        res.json(newUser);
+        res.json(latestUser);
       });
     } catch (err) {
       res.status(500).json(err);
@@ -103,7 +103,7 @@ router.post('/login',(req,res)=>{
         //Implementing requirements in order to save once data 
         req.session.save(() => {
             req.session.userId = user.id;
-            req.session.username = user.username;
+            req.session.userName = user.username;
             req.session.loggedIn = true;
       
             res.json({ user, message: 'You are now logged in!' });

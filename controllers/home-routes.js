@@ -11,23 +11,23 @@ const router = require('express').Router();
 
 router.get('/',(req,res)=>{ 
     Post.findAll({ 
-        attributes:["id","title","body","user_id"], 
+        attributes:["id","title","fufilled","made_in"], 
         include:[ 
             { 
                 model:User, 
                 as:"user", 
-                attributes:["username"]
+                attributes:["userName"]
             }, 
             { 
                 model:Comment, 
                 as:"comments", 
-                attributes:["id","user_id",'comment_text']
+                attributes:['id','commentText','postID','userID','made_in']
             },
         ]
     }) 
     //Creating a promise in order for the result to be available  
-    .then(dbPostData =>{ 
-        const post = dbPostData.map(post=>post.get({plain:true}));//Using map helps us serialize all the post . 
+    .then(PostData =>{ 
+        const post = PostData.map(post=>post.get({plain:true}));//Using map helps us serialize all the post . 
 
         console.log(post);  
 
@@ -63,27 +63,27 @@ router.get('/post/:id',(req,res)=>{
         where:{ 
                 id:req.params.id
         },
-        attributes:["id","title","body","user_id"], 
+        attributes:["id","title","fufilled","made_in"], 
         include:[ 
             { 
                 model:User, 
                 as:"user", 
-                attributes:["username"]
+                attributes:["userName"]
             }, 
             { 
                 model:Comment, 
                 as:"comments", 
-                attributes:["id","user_id",'comment_text']
+                attributes:['id','commentText','postID','userID','made_in']
             },
         ]
     }) 
      
-    .then(dbPostData =>{  
-        if(!dbPostData){ 
+    .then(PostData =>{  
+        if(!PostData){ 
             res.status(404).json({message:'Sorry this post has no id'}); 
             return;
         }
-        const post = dbPostData.map(post=>post.get({plain:true})); 
+        const post = PostData.map(post=>post.get({plain:true})); 
 
         console.log(post);  
 

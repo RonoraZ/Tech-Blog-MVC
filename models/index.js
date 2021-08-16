@@ -1,35 +1,36 @@
 const User = require('./user');
 const Post = require('./post');
 const Comment = require('./comment'); 
+//const { belongsTo } = require('./user');
 
 //Creating different models that will use a foreing key to add each attribute .
 
 User.belongsTo(User, {
-    foreignKey: 'user_Id'
+    foreignKey: 'userID'
   });
   
   Post.belongsTo(User, {
-    foreignKey: 'user_Id',
+    foreignKey: 'userID',
     onDelete: 'CASCADE'
   });
   
   Comment.belongsTo(User, {
-    foreignKey: 'user_Id',
+    foreignKey: 'userID',
     onDelete: 'CASCADE'
   }); 
 
   Comment.belongsTo(Post, {
-    foreignKey: 'post_Id',
+    foreignKey: 'postID',
     onDelete: 'CASCADE'
   }); 
 
   User.hasMany(Comment, {
-    foreignKey: 'user_Id',
+    foreignKey: 'userID',
     onDelete: 'CASCADE'
   }); 
 
   Post.hasMany(Comment, {
-    foreignKey: 'post_Id',
+    foreignKey: 'postID',
     onDelete: 'CASCADE'
   });
   

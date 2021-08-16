@@ -10,8 +10,7 @@ class User extends Model {
   }
 }
 
-//Creating a post model 
-class User extends Model {} 
+
 
 User.init(  
 { 
@@ -22,7 +21,7 @@ User.init(
         allowNull:false
      
     }, 
-    username:{ 
+    userName:{ 
         type:DataTypes.TEXT, 
         allowNull:false, 
         unique:true, 

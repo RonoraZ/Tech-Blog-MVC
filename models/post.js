@@ -1,5 +1,5 @@
-const { title } = require('process');
-const { Sequelize, Model, DataTypes } = require('sequelize');
+//const { title } = require('process');
+const {  Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
 
 //Creating a post model 
@@ -12,14 +12,20 @@ Post.init({
         autoIncrement:true
      
     }, 
-    body:{ 
-        type:DataTypes.TEXT, 
+    title:{ 
+        type:DataTypes.STRING, 
+        allowNull:false, 
+       
+    },  
+
+    fufilled:{ 
+        type:DataTypes.STRING, 
         allowNull:false, 
        
     }, 
-    user_id:{ 
+    userID:{ 
         type:DataTypes.INTEGER, 
-        allowNull:false, 
+        //allowNull:false, 
         reference:{ 
             model:'user', 
             key:'id'

@@ -1,0 +1,16 @@
+.form-signin {
+    width: 100%;
+    max-width: 250px;
+    padding: 20px;
+    margin: auto;
+} 
+
+body {
+    background-color:lightseagreen;
+    margin: 0;
+    padding: 0;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color:grey;
+    line-height: 2.0;
+    font-size: 15px;
+  }

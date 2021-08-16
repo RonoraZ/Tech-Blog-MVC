@@ -1,0 +1,21 @@
+<div class="card">
+    <h3 class="card-header">Editing a post</h3>
+    <form class="card-body editPost-form" id="editPost-form">
+        <div class="form-floating mb-3">
+        <label for="titleAdd" class="form-label">Title</label>
+        <input name="titleAdd" type="text" placeholder="{{post.title}}" class="form-input w-100" />
+        </div>
+
+        <div class="form-floating mb-3">
+        <label class="form-label" for="fufilled">Fufilled</label>
+        <textarea name="fufilled" type="text" placeholder="{{post.fufilled}}" class="form-input w-100" style="height: 100px"/></textarea>
+        </div>
+
+        <button type="submit" class="w-100 btn btn-lg btn-info mb-3">Update Post</button>
+        <button type="button" class="deletePost-btn w-100 btn btn-lg btn-danger mb-3">Delete</button>
+    </form>
+</div>
+
+
+<script src="/public/js/editPost.js"></script>
+<script src="/public/js/deletePost.js"></script>

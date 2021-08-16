@@ -8,19 +8,19 @@ const withAuth = require('../../utils/auth');
 
 router.get('/',(res,req)=>{ 
     Post.findAll({ 
-        attributes:["id","title","body","user_id"], 
-        order:[['user_id',"title"]], 
+        attributes:["id","title","fufilled","made_in"], 
+        order:[['made_in','sort']], 
         include:[ { 
             model:User,
-            attributes:['username'] 
+            attributes:['userName'] 
 
         }, 
         { 
             model:Comment,
-            attributes:["id","user_id",'comment_text'], 
+            attributes:['id','commentText','postID','userID','made_in'], 
             include:{ 
                 model:User, 
-                attributes:['username']
+                attributes:['userName']
             }
         }
     ]
@@ -35,7 +35,7 @@ router.get('/',(res,req)=>{
 //Creating a route to find specific data of the post  
 router.get('/:id',(req,res)=>{ 
     User.findOne({ 
-        attributes:['"id","title","body","user_id"'], 
+        attributes:["id","title","fufilled","made_in"], 
 
         where:{ 
             id:req.params.id 
@@ -43,14 +43,14 @@ router.get('/:id',(req,res)=>{
         include:[ 
             { 
                 model:User,  
-                attributes:["username"]
+                attributes:["userName"]
             }, 
             { 
                 model:Comment,  
                 attributes:["id","user_id",'comment_text'], 
                 include: { 
                     model:User, 
-                    attributes:['username']
+                    attributes:['userName']
                 }
             }, 
             

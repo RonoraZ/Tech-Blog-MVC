@@ -8,7 +8,7 @@ async function latestDeviceHandler(event){
     //Adding the values that are needed for the form add-post 
 
     const title = document.querySelector('input[name="titleAdd"]').value  
-    const body1 = document.querySelector('textArea[name="body"]').value 
+    const fufilled = document.querySelector('textArea[name="fufilled"]').value 
 
     //Adding string data to the post-routes 
 
@@ -30,6 +30,8 @@ async function latestDeviceHandler(event){
     }else{ 
     alert(response.statusText);
     }
-} 
+}; 
+
+document.querySelector('add-formB').addEventListener('submit',latestDeviceHandler);
 
 

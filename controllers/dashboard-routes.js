@@ -11,25 +11,25 @@ router.get('/',withAuth,(re,res)=>{
             user_id: req.session.user_id
         }, 
 
-        attributes:["id","title","body","user_id"], 
+        attributes:["id","title","fufilled","made_in"], 
         incldue:[ 
             { 
                 model:Comment, 
-                attributes:["id","title","body","user_id"], 
+                attributes:['id','commentText','postID','userID','made_in'], 
                 incldue:{ 
                     model:User, 
-                    attributes:['username']
+                    attributes:['userName']
                 }
 
             }, 
             { 
                 model:User, 
-                attributes:['username']
+                attributes:['userName']
             }
         ]
     }) 
-    .then(dbPostData =>{ 
-        const post = dbPostData.map(post =>post.get({plain:true})); 
+    .then(PostData =>{ 
+        const post = PostData.map(post =>post.get({plain:true})); 
         res.render('dashboard',{posts,loggedIn: true});
     }) 
     .catch(err =>{ 
@@ -46,17 +46,17 @@ router.get('/edit/:id',withAuth,(req,res)=>{
         where:{ 
                 id:req.params.id
         },
-        attributes:["id","title","body","user_id"], 
+        attributes:["id","title","fufilled","made_in"], 
         include:[ 
             { 
                 model:User, 
                 as:"user", 
-                attributes:["username"]
+                attributes:["userName"]
             }, 
             { 
                 model:Comment, 
                 as:"comments", 
-                attributes:["id","user_id",'comment_text']
+                attributes:['id','commentText','postID','userID','made_in']
             },
         ]
     }) 
@@ -70,7 +70,7 @@ router.get('/edit/:id',withAuth,(req,res)=>{
 
         console.log(post);  
 
-        res.render('edit-post',{post,loggedIn:req.session.loggedIn});
+        res.render('editPost',{post,loggedIn:req.session.loggedIn});
 
     }) 
     .catch(err =>{ 
@@ -82,7 +82,7 @@ router.get('/edit/:id',withAuth,(req,res)=>{
 //Creating a route when click a new post is added to the page 
 
 router.get('/new',(req,res)=>{ 
-    res.render('add-post');
+    res.render('addingPost');
 }); 
 
 module.exports =router;
