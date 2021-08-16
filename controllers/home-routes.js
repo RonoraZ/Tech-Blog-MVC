@@ -11,7 +11,7 @@ const router = require('express').Router();
 
 router.get('/',(req,res)=>{ 
     Post.findAll({ 
-        attributes:["id","title","fufilled","made_in"], 
+        attributes:["id","title","fufilled"], 
         include:[ 
             { 
                 model:User, 
@@ -21,7 +21,7 @@ router.get('/',(req,res)=>{
             { 
                 model:Comment, 
                 as:"comments", 
-                attributes:['id','commentText','postID','userID','made_in']
+                attributes:['id','commentText','postID','userID']
             },
         ]
     }) 
@@ -63,7 +63,7 @@ router.get('/post/:id',(req,res)=>{
         where:{ 
                 id:req.params.id
         },
-        attributes:["id","title","fufilled","made_in"], 
+        attributes:["id","title","fufilled",], 
         include:[ 
             { 
                 model:User, 
@@ -73,7 +73,7 @@ router.get('/post/:id',(req,res)=>{
             { 
                 model:Comment, 
                 as:"comments", 
-                attributes:['id','commentText','postID','userID','made_in']
+                attributes:['id','commentText','postID','userID',]
             },
         ]
     }) 

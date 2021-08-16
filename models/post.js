@@ -1,6 +1,6 @@
 //const { title } = require('process');
 const {  Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/config');
+const sequelize = require('../config/config.js');
 
 //Creating a post model 
 class Post extends Model {} 
