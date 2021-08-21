@@ -1,8 +1,8 @@
-{{#if posts.length}}
+{{#if post.length}}
 <section>
   <h2>History of The Blogs Post</h2>
-    {{#each posts as |post|}}
-      {{> dashboard-postinfo post}}
+    {{#each post as |post|}}
+      {{> dash-info post}}
     {{/each}}
 
 </section>

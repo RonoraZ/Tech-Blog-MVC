@@ -2,7 +2,7 @@
 
 const router = require('express').Router();
 
-const{User} = require('../../models')  
+const{User,Post,Comment} = require('../../models')  
 
 const withAuth = require('../../utils/auth');
 
@@ -34,7 +34,7 @@ router.get('/:id',(req,res)=>{
         include:[ 
             { 
                 model:Post,  
-                attributes:["id","title","fufilled","made_in"]
+                attributes:["id","title","fufilled",]
             }, 
             { 
                 model:Comment,  
@@ -67,16 +67,17 @@ router.get('/:id',(req,res)=>{
 
 //Creating a route in order to use a username and password in order to access the data . 
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res) => { 
+    console.log(typeof req.body);
     try {
       const latestUser = await User.create({
-        username: req.body.username,
+        userName: req.body.username,
         password: req.body.password,
       });
   
       req.session.save(() => {
         req.session.userID = latestUser.id;
-        req.session.userName = latestUser.username;
+        req.session.userName = latestUser.userName;
         req.session.loggedIn = true;
   
         res.json(latestUser);
@@ -124,7 +125,7 @@ router.post('/login',(req,res)=>{
 });
 
 //Destroys the session when the user logsout  
-router.post('/login',(req,res)=>{ 
+router.post('/logout',(req,res)=>{ 
     if(req.session.loggedIn){ 
         req.session.destroy(()=>{ 
             res.status(204).end();

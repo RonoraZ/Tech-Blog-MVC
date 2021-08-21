@@ -1,7 +1,7 @@
 const router = require('express').Router();
 // const { json } = require('body-parser');
 // const { join } = require('path/posix');
-const { Comment } = require('../../models/');
+const { Comment,User,Post} = require('../../models/');
 const withAuth = require('../../utils/auth');  
 
 //Creating a route in order to get comment and be displayed 

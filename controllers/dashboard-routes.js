@@ -5,17 +5,17 @@ const withAuth = require('../utils/auth.js');
 const { route } = require('./home-routes.js');
 
 
-router.get('/',withAuth,(re,res)=>{ 
+router.get('/',withAuth,(req,res)=>{ 
     Post.findAll({ 
         where:{ 
-            user_id: req.session.user_id
+            userID: req.session.userID
         }, 
 
-        attributes:["id","title","fufilled","made_in"], 
+        attributes:["id","title","fufilled"], 
         incldue:[ 
             { 
                 model:Comment, 
-                attributes:['id','commentText','postID','userID','made_in'], 
+                attributes:['id','commentText','postID','userID'], 
                 incldue:{ 
                     model:User, 
                     attributes:['userName']
@@ -30,7 +30,7 @@ router.get('/',withAuth,(re,res)=>{
     }) 
     .then(PostData =>{ 
         const post = PostData.map(post =>post.get({plain:true})); 
-        res.render('dashboard',{posts,loggedIn: true});
+        res.render('dashboard',{post,loggedIn: true});
     }) 
     .catch(err =>{ 
         console.log(err); 
@@ -46,7 +46,7 @@ router.get('/edit/:id',withAuth,(req,res)=>{
         where:{ 
                 id:req.params.id
         },
-        attributes:["id","title","fufilled","made_in"], 
+        attributes:["id","title","fufilled",], 
         include:[ 
             { 
                 model:User, 
@@ -56,21 +56,21 @@ router.get('/edit/:id',withAuth,(req,res)=>{
             { 
                 model:Comment, 
                 as:"comments", 
-                attributes:['id','commentText','postID','userID','made_in']
+                attributes:['id','commentText','postID','userID',]
             },
         ]
     }) 
      
-    .then(PostData =>{  
+    .then(PostData =>{ console.log(PostData);
         if(!PostData){ 
             res.status(404).json({message:'Sorry this post has no id'}); 
             return;
         }
-        const post = PostData.map(post=>post.get({plain:true})); 
+        // const post = PostData.map(post=>post.get({plain:true})); 
 
-        console.log(post);  
+        // console.log(post);  
 
-        res.render('editPost',{post,loggedIn:req.session.loggedIn});
+        res.render('edit',{post:PostData,loggedIn:req.session.loggedIn});
 
     }) 
     .catch(err =>{ 

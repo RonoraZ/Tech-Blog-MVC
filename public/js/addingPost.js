@@ -1,9 +1,9 @@
 //Making this function to be compatible with adding a post format 
 
-const { response } = require("express");
+ const  response  = ("response");
 
 async function latestDeviceHandler(event){ 
-    event.blockDefault(); 
+    event.preventDefault(); 
 
     //Adding the values that are needed for the form add-post 
 
@@ -15,7 +15,7 @@ async function latestDeviceHandler(event){
     const reply = await fetch(`/api/post`,{ 
     method:"POST", 
     body: JSON.stringify({ 
-        title,body1
+        title,fufilled
     }), 
     headers:{ 
         'Content-Type':'application/json'
@@ -32,6 +32,6 @@ async function latestDeviceHandler(event){
     }
 }; 
 
-document.querySelector('add-formB').addEventListener('submit',latestDeviceHandler);
+document.querySelector('#add-formB').addEventListener('submit',latestDeviceHandler);
 
 

@@ -24,6 +24,6 @@ const commentData = [{
 ];
 
 
-const CommentSeeds = () => Comment.bulkCreate(commentData); 
+const CommentsSeeds = () => Comment.bulkCreate(commentData); 
 
-Model.exports = CommentSeeds
+Model.exports = CommentsSeeds;
