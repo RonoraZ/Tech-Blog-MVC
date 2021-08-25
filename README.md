@@ -16,7 +16,14 @@
 
 # **Description** 
 
-  A tech-blog where you can post your thoughts and what is on your mind .
+  A tech-blog where you can post your thoughts and what is on your mind . 
+  **Deployabel link to heroku : 
+    https://tech-blog-c137.herokuapp.com/ .  
+  **Also link to the localhost :  
+     http://localhost:3001/ 
+  
+  ![](images/Screenshot%20(75).png)
+  
 
 # **Installation** 
    
