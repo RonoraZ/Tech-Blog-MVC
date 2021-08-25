@@ -7,6 +7,7 @@ const withAuth = require('../../utils/auth');
 //Creating a route that gets all the post 
 
 router.get('/',(req,res)=>{ 
+    console.log('======================');
     Post.findAll({ 
         attributes:["id","title","fufilled"], 
         // order:[['DESC']], 
@@ -92,12 +93,12 @@ router.delete('/:id', withAuth, async (req, res) => {
 
   router.post('/', withAuth, (req, res) => {
     // creates a new Post model instance and calls save on it
-    console.log(body);
+    console.log(req.body);
     Post.create({
             
             title: req.body.title,
             fufilled: req.body.fufilled, 
-            // userID: req.session.userID
+             userID: req.session.userID
         })
         .then(PostData => res.json(PostData))
         .catch(err => {

@@ -26,7 +26,7 @@ router.get('/',(req,res)=>{
 
 router.get('/:id',(req,res)=>{ 
     User.findOne({ 
-        attributes:{prohibit:['[password]']}, 
+        attributes:{exclude:['[password]']}, 
 
         where:{ 
             id:req.params.id 
@@ -38,7 +38,7 @@ router.get('/:id',(req,res)=>{
             }, 
             { 
                 model:Comment,  
-                attributes:['id','commentText','postID','userID','made_in'], 
+                attributes:['id','commentText','postID','userID',], 
                 include: { 
                     model:Post, 
                     attributes:['title']
@@ -93,7 +93,7 @@ it will find their user username that belongs to them */
 router.post('/login',(req,res)=>{ 
     User.findOne({ 
         where:{ 
-            username: req.body.username
+            userName: req.body.user
         }
     }) 
     .then(UserData=>{ 
@@ -101,18 +101,18 @@ router.post('/login',(req,res)=>{
             res.status(400).json({message:'Sorry this username is not valid for this user'})
             return;
         } 
-        const truePassword = UserData.inspectPassword(req.body.password); 
+        const truePassword = UserData.checkPassword(req.body.pass); 
         if(!truePassword){ 
             res.status(400).json({message:'Sorry wrong password'})
             return;
         } 
         //Implementing requirements in order to save once data 
         req.session.save(() => {
-            req.session.userId = user.id;
-            req.session.userName = user.username;
+            req.session.userId = UserData.id;
+            req.session.userName = UserData.userName;
             req.session.loggedIn = true;
       
-            res.json({ user, message: 'You are now logged in!' });
+            res.json({ UserData, message: 'You are now logged in!' });
           
         }); 
         

@@ -1,6 +1,6 @@
 //Making this function to be compatible with adding a post format 
 
- const  response  = ("response");
+//  const  response  = ("response");
 
 async function latestDeviceHandler(event){ 
     event.preventDefault(); 
@@ -24,11 +24,11 @@ async function latestDeviceHandler(event){
 
     //If everything is received correctly it will return you to the dashboard 
 
-    if(response.ok){ 
+    if(reply.ok){ 
     document.location.replace('/dashboard'); 
 
     }else{ 
-    alert(response.statusText);
+    alert(reply.statusText);
     }
 }; 
 

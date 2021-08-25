@@ -16,15 +16,16 @@
 
 # **Description** 
 
-  
+  A tech-blog where you can post your thoughts and what is on your mind .
 
 # **Installation** 
-  
-  
+   
+  In order to install git clone the repo once copied .Install all the dependencys that are required . Once the dependencys are installed . Do an node seeds in order to seed the data once the data has been seeded . Do an npm start to load the application in tour local host .
 
 
 # **Usage** 
     
+    In order to use node seeds and then use npm start .
 
 
 # **Contribution** 
@@ -39,4 +40,9 @@ N/A
 
 If any questions email me at amalec.c.guzman@gmail.com 
 
-**Technology**  
+**Technology**   
+ MVC 
+ Node.js 
+ Handlebars 
+ Javascript 
+ Mysql 

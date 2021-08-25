@@ -7,7 +7,7 @@
         window.location.toString().split('/').length - 1
       ];
       
-      const response = await fetch(`/api/posts/${id}`, {
+      const reply = await fetch(`/api/post/${id}`, {
         method: 'DELETE',
         body: JSON.stringify({
           postID: id
@@ -17,10 +17,10 @@
         }
       });
       
-      if (response.ok) {
+      if (reply.ok) {
         document.location.replace('/dashboard/');
       } else {
-        alert(response.statusText);
+        alert(reply.statusText);
       }
       
 }
